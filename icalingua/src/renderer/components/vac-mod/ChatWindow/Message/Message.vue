@@ -209,7 +209,7 @@ export default {
         index: { type: Number, required: true },
         message: { type: Object, required: true },
         messages: { type: Array, required: true },
-        editedMessage: { type: Object, required: true },
+        editedMessageId: { type: [String, Number], default: null },
         roomUsers: { type: Array, default: () => [] },
         roomFooterRef: { type: HTMLDivElement, default: null },
         newMessages: { type: Array, default: () => [] },
@@ -241,7 +241,7 @@ export default {
             return this.index > 0 && this.message.senderId !== this.messages[this.index - 1].senderId
         },
         isMessageHover() {
-            return this.editedMessage._id === this.message._id || this.hoverMessageId === this.message._id
+            return this.editedMessageId === this.message._id || this.hoverMessageId === this.message._id
         },
         isImage() {
             return isImageFile(this.message.file)
